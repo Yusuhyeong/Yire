@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -45,4 +47,19 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // gson
+    implementation("com.google.code.gson:gson:2.11.0")
+
+    // Retrofit2 라이브러리
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+
+    // Gson converter 라이브러리
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    // Scalars converter 라이브러리
+    implementation("com.squareup.retrofit2:converter-scalars:2.11.0")
+
+    // logging-interceptor는 반환된 모든 응답에 대해 로그 문자열을 생성합니다.
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 }
