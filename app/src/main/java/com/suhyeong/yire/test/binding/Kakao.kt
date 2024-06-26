@@ -34,26 +34,24 @@ class Kakao: ViewModel() {
 
         var checkValue:Boolean = false
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(_activity.applicationContext)) {
-            // 가능하다면 카카오톡으로 로그인하기
             UserApiClient.instance.loginWithKakaoTalk(_activity.applicationContext) { token, error ->
                 if (error != null) {
                     Log.d("loginCheck", "카카오톡으로 로그인 실패! " + error.message)
 
-                    // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인을 취소한 경우,
-                    // 의도적인 로그인 취소로 보고 카카오계정으로 로그인 시도 없이 로그인 취소로 처리 (예: 뒤로 가기)
                     if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
                         return@loginWithKakaoTalk
                     }
+
+                    UserApiClient.instance.loginWithKakaoAccount(
+                        _activity,
+                        callback = callback
+                    )
+
                 } else if (token != null) {
                     Log.d("loginCheck", "카카오톡으로 로그인 성공! " + token.accessToken)
                     checkValue = true
+                    fetchUserInfo()
                 }
-
-                // kakao로 로그인 하지 못 할 경우 계정으로 로그인 시도
-                UserApiClient.instance.loginWithKakaoAccount(
-                    _activity.applicationContext,
-                    callback = callback
-                )
             }
         } else {
             UserApiClient.instance.loginWithKakaoAccount(
@@ -72,6 +70,22 @@ class Kakao: ViewModel() {
         } else if (token != null) {
             Log.d("callback", "카카오 계정으로 로그인 성공! " + token.accessToken)
             _status.value = "로그인 성공"
+            fetchUserInfo()
+        }
+    }
+
+    private fun fetchUserInfo() {
+        UserApiClient.instance.me { user, error ->
+            if (error != null) {
+                Log.e("fetchUserInfo", "사용자 정보 요청 실패: ${error.message}")
+            } else if (user != null) {
+                Log.d("fetchUserInfo", "사용자 정보 요청 성공: ${user.kakaoAccount?.profile?.nickname}")
+                Log.d("fetchUserInfo", "사용자 ID: ${user.id}")
+
+                _status.value = "로그인 성공: ${user.kakaoAccount?.profile?.nickname} (${user.id})"
+                // -> 사용자 ID와 firebase의 uid와 비교한 후 값이 있다면 홈 화면으로 이동
+                // -> 없다면 팝업 (회원가입 요청)
+            }
         }
     }
 }

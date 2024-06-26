@@ -19,10 +19,6 @@ class MainTestActivity : AppCompatActivity() {
         binding.tvApiTest.setOnClickListener {
             val intent = Intent(this, ApiTestActivity::class.java)
             startActivity(intent)
-//            ItsApiClient.instance.searchMusic("아야츠노 유니") { result, error ->
-//                result?.let { Log.d("결과", result.toString()) }
-//                error?.let { Log.d("결과에러", error.toString()) }
-//            }
         }
 
         // SNS 로그인 (카카오톡)
