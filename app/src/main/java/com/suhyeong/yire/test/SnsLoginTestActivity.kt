@@ -14,7 +14,6 @@ import com.suhyeong.yire.test.binding.User
 
 class SnsLoginTestActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySnsLoginTestBinding
-    private lateinit var viewModel: Kakao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,14 +21,12 @@ class SnsLoginTestActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        viewModel = ViewModelProvider(this)[Kakao::class.java]
+        val viewModel = ViewModelProvider(this)[Kakao::class.java]
+        viewModel.setActivity(this)
         binding.view = viewModel
         binding.lifecycleOwner = this
 
         val keyHash = Utility.getKeyHash(this)
         Log.d("Hash", keyHash)
-
-        viewModel.setActivity(this)
-
     }
 }

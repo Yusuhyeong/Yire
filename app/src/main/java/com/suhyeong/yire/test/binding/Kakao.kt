@@ -1,8 +1,13 @@
 package com.suhyeong.yire.test.binding
 
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,17 +17,22 @@ import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.suhyeong.yire.test.listener.OnTextChangedListener
 
 class Kakao: ViewModel() {
     private lateinit var _activity: AppCompatActivity
     private val _status = MutableLiveData<String>()
     val status: LiveData<String> = _status
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
 
     fun setActivity(activity: AppCompatActivity) {
+        _loading.value = false
         _activity = activity
     }
 
     fun statusUpdate() {
+        _loading.value = true
         if (loginCheck())
             _status.value = "로그인 성공"
         else
@@ -50,6 +60,7 @@ class Kakao: ViewModel() {
                 } else if (token != null) {
                     Log.d("loginCheck", "카카오톡으로 로그인 성공! " + token.accessToken)
                     checkValue = true
+                    _loading.value = false
                     fetchUserInfo()
                 }
             }
@@ -67,9 +78,11 @@ class Kakao: ViewModel() {
         if (error != null) {
             Log.e("callback", "카카오 계정으로 로그인 실패! " + error.message)
             _status.value = "로그인 실패"
+            _loading.value = false
         } else if (token != null) {
             Log.d("callback", "카카오 계정으로 로그인 성공! " + token.accessToken)
             _status.value = "로그인 성공"
+            _loading.value = false
             fetchUserInfo()
         }
     }
