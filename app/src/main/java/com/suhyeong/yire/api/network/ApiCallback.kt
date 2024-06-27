@@ -3,7 +3,7 @@ package com.suhyeong.yire.api.network
 import android.util.Log
 import com.suhyeong.yire.api.ApiError
 import com.suhyeong.yire.api.ApiErrorCause
-import com.suhyeong.yire.api.model.ApiResult
+import com.suhyeong.yire.api.response.ApiResult
 import com.suhyeong.yire.utils.origin
 import retrofit2.Call
 import retrofit2.Callback

@@ -1,6 +1,6 @@
 package com.suhyeong.yire.api
 
-import com.suhyeong.yire.api.model.SearchResult
+import com.suhyeong.yire.api.response.SearchResult
 import com.suhyeong.yire.api.network.ApiCallback
 import com.suhyeong.yire.api.network.ApiFactory
 

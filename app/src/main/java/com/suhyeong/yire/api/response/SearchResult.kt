@@ -1,4 +1,4 @@
-package com.suhyeong.yire.api.model
+package com.suhyeong.yire.api.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.Expose

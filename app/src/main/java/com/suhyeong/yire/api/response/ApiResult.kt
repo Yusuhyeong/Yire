@@ -1,4 +1,4 @@
-package com.suhyeong.yire.api.model
+package com.suhyeong.yire.api.response
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize

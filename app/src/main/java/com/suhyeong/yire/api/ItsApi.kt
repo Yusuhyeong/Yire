@@ -1,7 +1,7 @@
 package com.suhyeong.yire.api
 
-import com.suhyeong.yire.api.model.ApiResult
-import com.suhyeong.yire.api.model.SearchResult
+import com.suhyeong.yire.api.response.ApiResult
+import com.suhyeong.yire.api.response.SearchResult
 import com.suhyeong.yire.utils.Constants
 import retrofit2.Call
 import retrofit2.http.GET
