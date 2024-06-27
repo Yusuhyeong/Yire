@@ -2,9 +2,7 @@ package com.suhyeong.yire.test
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.suhyeong.yire.api.ItsApiClient
 import com.suhyeong.yire.databinding.ActivityMainTestBinding
 
 class MainTestActivity : AppCompatActivity() {

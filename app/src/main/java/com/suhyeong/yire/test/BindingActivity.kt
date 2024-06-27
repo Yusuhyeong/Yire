@@ -3,7 +3,6 @@ package com.suhyeong.yire.test
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.suhyeong.yire.R
 import com.suhyeong.yire.databinding.ActivityBindingBinding
 import com.suhyeong.yire.test.binding.User
 

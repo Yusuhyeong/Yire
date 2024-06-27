@@ -1,14 +1,10 @@
 package com.suhyeong.yire.test
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.suhyeong.yire.R
-import com.suhyeong.yire.api.ItsApiClient
 import com.suhyeong.yire.databinding.ActivityApiTestBinding
-import com.suhyeong.yire.databinding.ActivitySnsLoginTestBinding
-import com.suhyeong.yire.test.binding.Kakao
 import com.suhyeong.yire.test.binding.MusicSearch
 
 class ApiTestActivity : AppCompatActivity() {
