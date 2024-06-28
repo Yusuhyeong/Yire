@@ -3,11 +3,19 @@ package com.suhyeong.yire.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.suhyeong.yire.R
+import com.suhyeong.yire.databinding.ActivityMainBinding
+import com.suhyeong.yire.databinding.ActivityMainTestBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        setContentView(R.layout.activity_main)
+        val uidIntent = intent.getStringExtra("uid")
+
+        binding.tvTest.setText(uidIntent)
     }
 }
