@@ -38,8 +38,8 @@ class MainTestActivity : AppCompatActivity() {
         }
     }
 
-    private fun showCommonDialog(title: String, detail: String, isOne: Boolean) {
-        val dialog = CommonPopUp.newInstance(title, detail, isOne)
+    private fun showCommonDialog(title: String, detail: String, isTwo: Boolean) {
+        val dialog = CommonPopUp.newInstance(title, detail, isTwo)
 
         dialog.setPopUpListener(object : PopUpClickListener {
             override fun onConfirm() {

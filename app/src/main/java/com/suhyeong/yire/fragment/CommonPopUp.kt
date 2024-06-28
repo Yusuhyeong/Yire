@@ -16,7 +16,7 @@ class CommonPopUp: DialogFragment() {
     private lateinit var binding: FragmentCommonPopupBinding
     private lateinit var title: String
     private lateinit var detail: String
-    private var isOne: Boolean = false
+    private var isTwo: Boolean = false
     private lateinit var listener: PopUpClickListener
 
     override fun onCreateView(
@@ -34,7 +34,7 @@ class CommonPopUp: DialogFragment() {
 
         title = arguments?.getString("title") ?: "NONE"
         detail = arguments?.getString("detail") ?: "NONE"
-        isOne = arguments?.getBoolean("isOne") ?: false
+        isTwo = arguments?.getBoolean("isOne") ?: false
 
         if (!"NONE".equals(title)) {
             binding.tvPopupTitle.text = title
@@ -44,7 +44,7 @@ class CommonPopUp: DialogFragment() {
             binding.tvPopupDetail.text = detail
         }
 
-        binding.tvPopupCancel.isVisible = isOne
+        binding.tvPopupCancel.isVisible = isTwo
 
         binding.tvPopupConfirm.setOnClickListener {
             listener.onConfirm()
@@ -62,11 +62,11 @@ class CommonPopUp: DialogFragment() {
     }
 
     companion object {
-        fun newInstance(title: String, detail: String, isOne: Boolean): CommonPopUp {
+        fun newInstance(title: String, detail: String, isTwo: Boolean): CommonPopUp {
             val args = Bundle()
             args.putString("title", title)
             args.putString("detail", detail)
-            args.putBoolean("isOne", isOne)
+            args.putBoolean("isOne", isTwo)
 
             val fragment = CommonPopUp()
             fragment.arguments = args
