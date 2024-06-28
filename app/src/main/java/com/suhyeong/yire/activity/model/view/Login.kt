@@ -1,5 +1,6 @@
 package com.suhyeong.yire.activity.model.view
 
+import android.content.Intent
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -10,6 +11,7 @@ import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
+import com.suhyeong.yire.activity.NickNameActivity
 import com.suhyeong.yire.listener.LoginCheckListener
 import com.suhyeong.yire.utils.Constants
 
@@ -18,7 +20,7 @@ class Login: ViewModel() {
     private lateinit var _listener: LoginCheckListener
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
-    private val testUid: String = "3596478086"
+    private val firestore = Firestore()
 
     fun setActivity(activity: AppCompatActivity, listener: LoginCheckListener) {
         _loading.value = false
@@ -91,14 +93,36 @@ class Login: ViewModel() {
                 Log.d("fetchUserInfo", "사용자 정보 요청 성공: ${user.kakaoAccount?.profile?.nickname}")
                 Log.d("fetchUserInfo", "사용자 ID: ${user.id}")
 
-                if (testUid.equals(user.id.toString())) {
-                    _listener.onLoginSuccess(user.id.toString())
-                } else {
-                    _listener.onLoginFailure(Constants.UNREGISTERED_USER)
+                val userId = user.id.toString()
+                Log.d("TEST_LOG", "uid : ${userId}")
+                firestore.checkUidAndNickname(userId) { uidExists, nicknameExists, nickname ->
+                    if (uidExists) {
+                        Log.d("TEST_LOG", "uid 있음")
+                        if (nicknameExists) {
+                            Log.d("TEST_LOG", "nickname 있음 ${nickname}")
+                            _listener.onLoginSuccess(userId, nickname.toString())
+                        } else {
+                            Log.d("TEST_LOG", "nickname 없음")
+                            val intent = Intent(_activity, NickNameActivity::class.java)
+                            intent.putExtra("uid", userId)
+                            _activity.startActivity(intent)
+                        }
+                    } else {
+                        Log.d("TEST_LOG", "uid 없음")
+                        val intent = Intent(_activity, NickNameActivity::class.java)
+                        intent.putExtra("uid", userId)
+                        _activity.startActivity(intent)
+                        firestore.setUid(userId) { success ->
+                            if (success) {
+                                val intent = Intent(_activity, NickNameActivity::class.java)
+                                intent.putExtra("uid", userId)
+                                _activity.startActivity(intent)
+                            } else {
+                                Log.e("Login", "UID 저장 실패")
+                            }
+                        }
+                    }
                 }
-                //TODO
-                // -> 사용자 ID와 firebase의 uid와 비교한 후 값이 있다면 홈 화면으로 이동
-                // -> 없다면 팝업 (회원가입 요청)
             }
         }
     }

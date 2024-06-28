@@ -2,6 +2,7 @@ package com.suhyeong.yire.activity.model.view
 
 import android.content.Intent
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
@@ -13,13 +14,14 @@ import androidx.lifecycle.ViewModel
 import com.suhyeong.yire.activity.MainActivity
 import com.suhyeong.yire.fragment.CommonPopUp
 import com.suhyeong.yire.listener.PopUpClickListener
-import com.suhyeong.yire.test.listener.OnTextChangedListener
+import com.suhyeong.yire.listener.OnTextChangedListener
 
 class NickName: ViewModel() {
     private lateinit var _activity: AppCompatActivity
     private lateinit var uid: String
     private val _nickName = MutableLiveData<String>()
     val nickName: LiveData<String> = _nickName
+    private val firestore = Firestore()
 
     fun setActivity(activity: AppCompatActivity, uid: String) {
         _activity = activity
@@ -56,13 +58,19 @@ class NickName: ViewModel() {
         dialog.setPopUpListener(object : PopUpClickListener {
             override fun onConfirm() {
                 // 확인 버튼 클릭 처리
-                Log.d("CommonDialog", "확인 버튼 클릭")
-                val intent = Intent(_activity, MainActivity::class.java)
-                intent.putExtra("uid", uid)
-                intent.putExtra("nickName", nickName)
-                _activity.startActivity(intent)
-                _activity.finish()
-                _activity.finish()
+                Log.d("CommonDialog", "확인 버튼 클릭 ${nickName}")
+                if (!TextUtils.isEmpty(nickName)) {
+                    val intent = Intent(_activity, MainActivity::class.java)
+                    intent.putExtra("uid", uid)
+                    intent.putExtra("nickName", nickName)
+
+                    firestore.setNickName(uid, nickName) { setSuccess ->
+                        if (setSuccess) {
+                            _activity.startActivity(intent)
+                            _activity.finish()
+                        }
+                    }
+                }
             }
 
             override fun onCancel() {

@@ -9,7 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.suhyeong.yire.api.ItsApiClient
-import com.suhyeong.yire.test.listener.OnTextChangedListener
+import com.suhyeong.yire.listener.OnTextChangedListener
 
 class MusicSearch: ViewModel() {
     private val _status = MutableLiveData<String>()
