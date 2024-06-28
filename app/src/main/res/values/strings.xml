@@ -9,4 +9,9 @@
     <string name="login_title">LOGIN</string>
     <string name="sign_up_check">아이디가 없으신가요?\n카카오를 통해 무료 회원가입으로 시작해보세요!</string>
     <string name="login_loading">로딩 중...</string>
+
+    <!-- NickNameActivity -->
+    <string name="nick_name_title">회원님을 어떻게 부를까요?\n별명을 지어주세요!</string>
+    <string name="nick_name_info">회원님이 보여질 이름입니다.\n신중하게 작성해주세요!</string>
+    <string name="set_nick_name">저장하기</string>
 </resources>

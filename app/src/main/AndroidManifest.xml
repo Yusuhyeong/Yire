@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Yire"
         tools:targetApi="31">
         <activity
+            android:name=".activity.NickNameActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity

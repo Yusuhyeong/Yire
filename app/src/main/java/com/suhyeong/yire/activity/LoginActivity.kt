@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity(), LoginCheckListener {
     }
 
     override fun onLoginSuccess(uid: String) {
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, NickNameActivity::class.java)
         intent.putExtra("uid", uid)
         startActivity(intent)
         finish()

@@ -15,7 +15,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         val uidIntent = intent.getStringExtra("uid")
+        val nickNameIntent = intent.getStringExtra("nickName")
 
-        binding.tvTest.setText(uidIntent)
+        binding.tvTest.text = uidIntent
+        binding.tvTest2.text = nickNameIntent
     }
 }
