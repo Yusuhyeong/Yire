@@ -10,7 +10,7 @@ import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
-import com.suhyeong.yire.test.listener.LoginCheckListener
+import com.suhyeong.yire.listener.LoginCheckListener
 import com.suhyeong.yire.utils.Constants
 
 class Login: ViewModel() {

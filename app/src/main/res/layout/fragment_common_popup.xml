@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/popup_round_border_12dp" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" >
+
+            <TextView
+                android:id="@+id/tv_popup_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="title"
+                android:textSize="18dp"
+                android:paddingVertical="8dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/pretendard_bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_popup_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="40dp"
+                android:gravity="center"
+                android:text="detail"
+                android:textSize="14dp"
+                android:fontFamily="@font/pretendard_regular"
+                android:paddingVertical="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_popup_title" />
+
+            <TextView
+                android:id="@+id/tv_popup_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:background="@drawable/round_border_btn_color_20dp"
+                android:text="확인"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/white"
+                android:layout_marginVertical="10dp"
+                android:gravity="center"
+                android:fontFamily="@font/pretendard_regular"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tv_popup_cancel"
+                app:layout_constraintTop_toBottomOf="@id/tv_popup_detail"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_popup_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
+                android:text="취소"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/round_border_btn_white_20dp"
+                android:gravity="center"
+                android:fontFamily="@font/pretendard_regular"
+                app:layout_constraintLeft_toRightOf="@id/tv_popup_confirm"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_popup_confirm"
+                app:layout_constraintBottom_toBottomOf="@id/tv_popup_confirm" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

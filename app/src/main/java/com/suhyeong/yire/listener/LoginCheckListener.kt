@@ -1,4 +1,4 @@
-package com.suhyeong.yire.test.listener
+package com.suhyeong.yire.listener
 
 interface LoginCheckListener {
     fun onLoginSuccess(uid: String)

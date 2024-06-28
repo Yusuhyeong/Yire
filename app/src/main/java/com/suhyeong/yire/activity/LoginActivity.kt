@@ -8,7 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.kakao.sdk.common.util.Utility
 import com.suhyeong.yire.activity.model.view.Login
 import com.suhyeong.yire.databinding.ActivityLoginBinding
-import com.suhyeong.yire.test.listener.LoginCheckListener
+import com.suhyeong.yire.listener.LoginCheckListener
+import com.suhyeong.yire.test.MainTestActivity
 import com.suhyeong.yire.utils.Constants
 
 class LoginActivity : AppCompatActivity(), LoginCheckListener {
@@ -27,6 +28,12 @@ class LoginActivity : AppCompatActivity(), LoginCheckListener {
 
         val keyHash = Utility.getKeyHash(this)
         Log.d("Hash", keyHash)
+
+        binding.tvLoginTitle.setOnClickListener {
+            val intent = Intent(this, MainTestActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     override fun onLoginSuccess(uid: String) {
