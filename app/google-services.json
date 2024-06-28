@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "865238954765",
+    "project_id": "yire-956c7",
+    "storage_bucket": "yire-956c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865238954765:android:d4c2efb675c8384625b644",
+        "android_client_info": {
+          "package_name": "com.suhyeong.yire"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGwjNka92ZOvo1GrK7zeIqNYmkclilZjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
