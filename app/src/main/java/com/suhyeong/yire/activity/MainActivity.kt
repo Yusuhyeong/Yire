@@ -26,6 +26,12 @@ class MainActivity : AppCompatActivity() {
         binding.mainViewModel = viewModel
         binding.lifecycleOwner = this
 
+        // 홈 화면 초기 설정
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().replace(R.id.fl_main, HomeFragment())
+                .addToBackStack(null).commit()
+        }
+
         viewModel.selectedId.observe(this, Observer { id ->
             openFragment(id)
         })
