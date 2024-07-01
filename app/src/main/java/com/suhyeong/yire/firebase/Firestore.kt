@@ -1,10 +1,9 @@
-package com.suhyeong.yire.activity.model.view
+package com.suhyeong.yire.firebase
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Firestore : ViewModel() {
+class Firestore {
 
     private val firestore = FirebaseFirestore.getInstance()
 

@@ -1,4 +1,4 @@
-package com.suhyeong.yire.activity.model.view
+package com.suhyeong.yire.activity.viewmodel
 
 import android.content.Intent
 import android.util.Log
@@ -12,10 +12,11 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.suhyeong.yire.activity.NickNameActivity
+import com.suhyeong.yire.firebase.Firestore
 import com.suhyeong.yire.listener.LoginCheckListener
 import com.suhyeong.yire.utils.Constants
 
-class Login: ViewModel() {
+class LoginViewModel: ViewModel() {
     private lateinit var _activity: AppCompatActivity
     private lateinit var _listener: LoginCheckListener
     private val _loading = MutableLiveData<Boolean>()

@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.kakao.sdk.common.util.Utility
-import com.suhyeong.yire.activity.model.view.Login
+import com.suhyeong.yire.activity.viewmodel.LoginViewModel
 import com.suhyeong.yire.databinding.ActivityLoginBinding
 import com.suhyeong.yire.listener.LoginCheckListener
 import com.suhyeong.yire.test.MainTestActivity
@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity(), LoginCheckListener {
         val view = binding.root
         setContentView(view)
 
-        val viewModel = ViewModelProvider(this)[Login::class.java]
+        val viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         viewModel.setActivity(this, this)
         binding.view = viewModel
         binding.lifecycleOwner = this

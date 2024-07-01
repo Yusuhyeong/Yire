@@ -8,7 +8,7 @@
 
         <variable
             name="view"
-            type="com.suhyeong.yire.activity.model.view.Login" />
+            type="com.suhyeong.yire.activity.viewmodel.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
