@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/icon_search"
+        tools:ignore="MenuTitle" />
+
+    <item
+        android:id="@+id/playListFragment"
+        android:icon="@drawable/icon_my_music"
+        tools:ignore="MenuTitle" />
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/icon_home"
+        tools:ignore="MenuTitle" />
+
+    <item
+        android:id="@+id/matchingFragment"
+        android:icon="@drawable/icon_matching"
+        tools:ignore="MenuTitle" />
+
+    <item
+        android:id="@+id/chattingFragment"
+        android:icon="@drawable/icon_chat"
+        tools:ignore="MenuTitle" />
+</menu>

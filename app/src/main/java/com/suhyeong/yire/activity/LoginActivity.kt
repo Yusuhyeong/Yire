@@ -15,7 +15,6 @@ import com.kakao.sdk.user.UserApiClient
 import com.suhyeong.yire.activity.viewmodel.LoginViewModel
 import com.suhyeong.yire.databinding.ActivityLoginBinding
 import com.suhyeong.yire.firebase.Firestore
-import com.suhyeong.yire.listener.LoginCheckListener
 import com.suhyeong.yire.test.MainTestActivity
 import com.suhyeong.yire.utils.Constants
 
