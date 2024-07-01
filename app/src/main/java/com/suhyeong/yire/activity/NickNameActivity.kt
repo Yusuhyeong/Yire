@@ -30,7 +30,7 @@ class NickNameActivity : AppCompatActivity() {
 
         viewModel.show_popup_event.observe(this) { msg ->
             if (!viewModel.nickName.value.isNullOrEmpty()) {
-                showCommonDialog("닉네임 확인", msg, viewModel.nickName.toString(), true)
+                showCommonDialog("닉네임 확인", msg, viewModel.nickName.value.toString(), true)
             } else {
                 showCommonDialog("닉네임 확인", msg, "", false)
             }
