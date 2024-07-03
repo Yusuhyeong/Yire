@@ -11,8 +11,10 @@ import android.view.ViewGroup
 import android.view.Window
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.suhyeong.yire.R
 import com.suhyeong.yire.activity.viewmodel.LoginViewModel
+import com.suhyeong.yire.adapter.SearchResultAdapter
 import com.suhyeong.yire.databinding.ActivityLoginBinding
 import com.suhyeong.yire.databinding.FragmentCommonPopupBinding
 import com.suhyeong.yire.databinding.FragmentSearchBinding
@@ -20,9 +22,6 @@ import com.suhyeong.yire.firebase.Firestore
 import com.suhyeong.yire.fragment.viewmodel.FragmentViewModel
 
 class SearchFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
     private lateinit var binding: FragmentSearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,17 +39,26 @@ class SearchFragment : Fragment() {
         binding.searchViewModel = viewModel
         binding.lifecycleOwner = this
 
+        binding.rvResult.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+        }
+
         viewModel.result.observe(viewLifecycleOwner, Observer { searchResults ->
             searchResults?.let {
                 for (i: Int in 0 until searchResults.size) {
                     Log.d("결과", "==============================================")
                     Log.d("결과", "가수 : " + searchResults.get(i).artistName.toString())
+                    Log.d("결과", "제목 : " + searchResults.get(i).trackCensoredName.toString())
                     Log.d("결과", "해당 앨범 : " + searchResults.get(i).trackName.toString())
+                    Log.d("결과", "재생 시간 : " + searchResults.get(i).trackTimeMillis.toString())
                     Log.d("결과", "앨범 커버 : " + searchResults.get(i).artworkUrl100.toString())
                     Log.d("결과", "출시일 : " + searchResults.get(i).releaseDate.toString())
                     Log.d("결과", "장르 : " + searchResults.get(i).primaryGenreName.toString())
                     Log.d("결과", "==============================================")
                 }
+                val searchResultAdapter = SearchResultAdapter(it)
+                binding.rvResult.adapter = searchResultAdapter
             }
         })
 

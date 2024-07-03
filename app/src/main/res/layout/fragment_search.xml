@@ -64,7 +64,7 @@
                         android:id="@+id/btn_search"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:src="@drawable/icon_search"
+                        android:src="@drawable/icon_search_white"
                         android:layout_margin="4dp"
                         android:onClick="@{v -> searchViewModel.apiSearch(searchViewModel.searchQuery)}"
                         app:layout_constraintLeft_toLeftOf="parent"
