@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.suhyeong.yire.R
 import com.suhyeong.yire.api.response.SearchResult
+import com.suhyeong.yire.listener.ListClickListener
 
 class SearchResultAdapter(private val searchResults: List<SearchResult>) : RecyclerView.Adapter<SearchResultAdapter.SearchResultViewHolder>() {
+    private var onClickListener: ListClickListener?= null
     class SearchResultViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val albumCoverImageView: ImageView = itemView.findViewById(R.id.img_album_cover)
         val titleTextView: TextView = itemView.findViewById(R.id.tv_title)
@@ -38,7 +40,15 @@ class SearchResultAdapter(private val searchResults: List<SearchResult>) : Recyc
         val formattedTime = String.format("%02d:%02d", minutes, seconds)
 
         holder.musicInfoTextView.text = "${searchResult.artistName} · $formattedTime"
+
+        holder.itemView.setOnClickListener {
+            onClickListener?.listClickListener(searchResult)
+        }
     }
 
     override fun getItemCount() = searchResults.size
+
+    fun setClickListener(onClickListener: ListClickListener) {
+        this.onClickListener = onClickListener
+    }
 }

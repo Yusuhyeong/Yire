@@ -8,18 +8,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.suhyeong.yire.R
-import com.suhyeong.yire.activity.viewmodel.LoginViewModel
 import com.suhyeong.yire.adapter.SearchResultAdapter
-import com.suhyeong.yire.databinding.ActivityLoginBinding
-import com.suhyeong.yire.databinding.FragmentCommonPopupBinding
+import com.suhyeong.yire.api.response.SearchResult
 import com.suhyeong.yire.databinding.FragmentSearchBinding
-import com.suhyeong.yire.firebase.Firestore
 import com.suhyeong.yire.fragment.viewmodel.FragmentViewModel
+import com.suhyeong.yire.listener.ListClickListener
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
@@ -58,6 +54,11 @@ class SearchFragment : Fragment() {
                     Log.d("결과", "==============================================")
                 }
                 val searchResultAdapter = SearchResultAdapter(it)
+                searchResultAdapter.setClickListener(object : ListClickListener {
+                    override fun listClickListener(item: SearchResult) {
+                        // 노래 정보 화면 띄우기
+                    }
+                })
                 binding.rvResult.adapter = searchResultAdapter
             }
         })
