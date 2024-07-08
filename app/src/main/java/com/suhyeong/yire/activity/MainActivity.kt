@@ -1,11 +1,14 @@
 package com.suhyeong.yire.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.suhyeong.yire.R
 import com.suhyeong.yire.activity.viewmodel.MainViewModel
+import com.suhyeong.yire.activity.viewmodel.MainViewModelFactory
 import com.suhyeong.yire.databinding.ActivityMainBinding
 import com.suhyeong.yire.fragment.ChattingFragment
 import com.suhyeong.yire.fragment.HomeFragment
@@ -22,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        val viewModel = ViewModelProvider(this, MainViewModelFactory())[MainViewModel::class.java]
         binding.mainViewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -34,6 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.selectedId.observe(this, Observer { id ->
             openFragment(id)
+        })
+
+        viewModel.try_search_music.observe(this, Observer { loading ->
+            Log.d("TEST", loading.toString())
         })
     }
 
