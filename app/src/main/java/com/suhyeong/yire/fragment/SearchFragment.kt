@@ -19,6 +19,9 @@ import com.suhyeong.yire.adapter.SearchResultAdapter
 import com.suhyeong.yire.api.response.SearchResult
 import com.suhyeong.yire.databinding.FragmentSearchBinding
 import com.suhyeong.yire.listener.ListClickListener
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
@@ -53,8 +56,29 @@ class SearchFragment : Fragment() {
                 searchResultAdapter.setClickListener(object : ListClickListener {
                     override fun listClickListener(item: SearchResult) {
                         // 노래 정보 화면 띄우기
-                        val intent = Intent(requireActivity(), DetailActivity::class.java)
-                        startActivity(intent)
+                        val detailIntent = Intent(requireActivity(), DetailActivity::class.java)
+                        detailIntent.putExtra("artistName", item.artistName)
+                        detailIntent.putExtra("artworkUrl100", item.artworkUrl100)
+                        detailIntent.putExtra("trackCensoredName",  item.trackCensoredName)
+
+                        val trackTimeMillis = item.trackTimeMillis ?: 0L
+
+                        val minutes = (trackTimeMillis / 1000) / 60
+                        val seconds = (trackTimeMillis / 1000) % 60
+                        val formattedTime = String.format("%02d:%02d", minutes, seconds)
+
+                        detailIntent.putExtra("trackTimeMillis", formattedTime)
+                        detailIntent.putExtra("previewUrl", item.previewUrl)
+                        detailIntent.putExtra("trackName", item.trackName)
+
+                        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+                        val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                        val date: Date = inputFormat.parse(item.releaseDate)
+                        val releaseDate = outputFormat.format(date)
+
+                        detailIntent.putExtra("releaseDate", releaseDate)
+
+                        startActivity(detailIntent)
                     }
                 })
                 binding.rvResult.adapter = searchResultAdapter
