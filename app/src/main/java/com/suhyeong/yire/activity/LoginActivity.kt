@@ -29,11 +29,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(view)
 
         val viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        binding.view = viewModel
+        binding.loginViewModel = viewModel
         binding.lifecycleOwner = this
 
         val keyHash = Utility.getKeyHash(this)
-        Log.d("Hash", keyHash)
+        Log.d("YLOG", keyHash)
 
         binding.tvLoginTitle.setOnClickListener {
             val intent = Intent(this, MainTestActivity::class.java)
@@ -62,11 +62,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun onLoginFailure(error: String) {
-        binding.view?.setDimVisibility(false)
+        binding.loginViewModel?.setDimVisibility(false)
         if (Constants.UNREGISTERED_USER.equals(error)) {
-            Log.d("LoginActivity", "등록되지 않은 유저")
+            Log.d("YLOG", "등록되지 않은 유저")
         } else if (Constants.KAKAO_LOGIN_ERROR.equals(error)) {
-            Log.d("LoginActivity", "카카오 로그인 실패")
+            Log.d("YLOG", "카카오 로그인 실패")
         }
     }
 
@@ -74,7 +74,7 @@ class LoginActivity : AppCompatActivity() {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(this.applicationContext)) {
             UserApiClient.instance.loginWithKakaoTalk(this.applicationContext) { token, error ->
                 if (error != null) {
-                    Log.d("loginCheck", "카카오톡으로 로그인 실패! " + error.message)
+                    Log.d("YLOG", "카카오톡으로 로그인 실패! " + error.message)
 
                     if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
                         return@loginWithKakaoTalk
@@ -86,7 +86,7 @@ class LoginActivity : AppCompatActivity() {
                     )
 
                 } else if (token != null) {
-                    Log.d("loginCheck", "카카오톡으로 로그인 성공! " + token.accessToken)
+                    Log.d("YLOG", "카카오톡으로 로그인 성공! " + token.accessToken)
                     fetchUserInfo()
                 }
             }
@@ -100,28 +100,28 @@ class LoginActivity : AppCompatActivity() {
     private fun fetchUserInfo() {
         UserApiClient.instance.me { user, error ->
             if (error != null) {
-                Log.e("fetchUserInfo", "사용자 정보 요청 실패: ${error.message}")
+                Log.e("YLOG", "사용자 정보 요청 실패: ${error.message}")
             } else if (user != null) {
-                Log.d("fetchUserInfo", "사용자 정보 요청 성공: ${user.kakaoAccount?.profile?.nickname}")
-                Log.d("fetchUserInfo", "사용자 ID: ${user.id}")
+                Log.d("YLOG", "사용자 정보 요청 성공: ${user.kakaoAccount?.profile?.nickname}")
+                Log.d("YLOG", "사용자 ID: ${user.id}")
 
                 val userId = user.id.toString()
-                Log.d("TEST_LOG", "uid : ${userId}")
+                Log.d("YLOG", "uid : ${userId}")
                 firestore.checkUidAndNickname(userId) { uidExists, nicknameExists, nickname ->
                     if (uidExists) {
-                        Log.d("TEST_LOG", "uid 있음")
+                        Log.d("YLOG", "uid 있음")
                         if (nicknameExists) {
-                            Log.d("TEST_LOG", "nickname 있음 ${nickname}")
+                            Log.d("YLOG", "nickname 있음 ${nickname}")
                             onLoginSuccess(userId, nickname.toString())
                         } else {
-                            Log.d("TEST_LOG", "nickname 없음")
+                            Log.d("YLOG", "nickname 없음")
                             val intent = Intent(this, NickNameActivity::class.java)
                             intent.putExtra("uid", userId)
                             startActivity(intent)
                             finish()
                         }
                     } else {
-                        Log.d("TEST_LOG", "uid 없음")
+                        Log.d("YLOG", "uid 없음")
                         val intent = Intent(this, NickNameActivity::class.java)
                         intent.putExtra("uid", userId)
                         startActivity(intent)
@@ -132,7 +132,7 @@ class LoginActivity : AppCompatActivity() {
                                 startActivity(intent)
                                 finish()
                             } else {
-                                Log.e("Login", "UID 저장 실패")
+                                Log.e("YLOG", "UID 저장 실패")
                             }
                         }
                     }
@@ -143,12 +143,12 @@ class LoginActivity : AppCompatActivity() {
 
     val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
-            Log.e("callback", "카카오 계정으로 로그인 실패! " + error.message)
-            Log.d("loginCheck", "로그인 실패")
+            Log.e("YLOG", "카카오 계정으로 로그인 실패! " + error.message)
+            Log.d("YLOG", "로그인 실패")
             onLoginFailure(Constants.KAKAO_LOGIN_ERROR)
         } else if (token != null) {
-            Log.d("callback", "카카오 계정으로 로그인 성공! " + token.accessToken)
-            Log.d("loginCheck", "로그인 성공")
+            Log.d("YLOG", "카카오 계정으로 로그인 성공! " + token.accessToken)
+            Log.d("YLOG", "로그인 성공")
             fetchUserInfo()
         }
     }

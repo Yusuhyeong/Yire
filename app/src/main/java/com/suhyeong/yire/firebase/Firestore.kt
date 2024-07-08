@@ -21,7 +21,7 @@ class Firestore {
                 callback(false, false, null)
             }
         }.addOnFailureListener { e ->
-            Log.e("TEST_LOG", "Error getting document", e)
+            Log.e("YLOG", "Error getting document", e)
             callback(false, false, null)
         }
     }
@@ -30,24 +30,24 @@ class Firestore {
         val userRef = firestore.collection("uid").document(uid)
         userRef.update("nickname", nickname)
             .addOnSuccessListener {
-                Log.d("TEST_LOG", "닉네임 저장 성공!")
+                Log.d("YLOG", "닉네임 저장 성공!")
                 callback(true)
             }
             .addOnFailureListener { e ->
-                Log.e("TEST_LOG", "닉네임 저장 실패", e)
+                Log.e("YLOG", "닉네임 저장 실패", e)
                 callback(false)
             }
     }
 
     fun setUid(uid: String, callback: (Boolean) -> Unit) {
-        Log.d("TEST_LOG", "uid 추가, 추가 uid : $uid")
+        Log.d("YLOG", "uid 추가, 추가 uid : $uid")
 
         val userRef = firestore.collection("uid").document(uid)
         userRef.set(emptyMap<String, Any>()).addOnSuccessListener {
-            Log.d("TEST_LOG", "UID 추가 성공!!")
+            Log.d("YLOG", "UID 추가 성공!!")
             callback(true)
         }.addOnFailureListener { e ->
-            Log.e("TEST_LOG", "UID 추가 실패!!", e)
+            Log.e("YLOG", "UID 추가 실패!!", e)
             callback(false)
         }
     }

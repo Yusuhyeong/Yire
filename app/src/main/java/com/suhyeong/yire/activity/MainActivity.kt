@@ -3,7 +3,6 @@ package com.suhyeong.yire.activity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.suhyeong.yire.R
@@ -25,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val viewModel = ViewModelProvider(this, MainViewModelFactory())[MainViewModel::class.java]
-        binding.mainViewModel = viewModel
+        val mainViewModel = ViewModelProvider(this, MainViewModelFactory())[MainViewModel::class.java]
+        binding.mainViewModel = mainViewModel
         binding.lifecycleOwner = this
 
         // 홈 화면 초기 설정
@@ -35,12 +34,12 @@ class MainActivity : AppCompatActivity() {
                 .addToBackStack(null).commit()
         }
 
-        viewModel.selectedId.observe(this, Observer { id ->
+        mainViewModel.selectedId.observe(this, Observer { id ->
             openFragment(id)
         })
 
-        viewModel.try_search_music.observe(this, Observer { loading ->
-            Log.d("TEST", loading.toString())
+        mainViewModel.try_search_music.observe(this, Observer { loading ->
+            Log.d("YLOG", loading.toString())
         })
     }
 

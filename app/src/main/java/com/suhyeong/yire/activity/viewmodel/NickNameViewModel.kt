@@ -1,20 +1,12 @@
 package com.suhyeong.yire.activity.viewmodel
 
-import android.content.Intent
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.suhyeong.yire.activity.MainActivity
-import com.suhyeong.yire.firebase.Firestore
-import com.suhyeong.yire.fragment.CommonPopUp
-import com.suhyeong.yire.listener.PopUpClickListener
 import com.suhyeong.yire.listener.OnTextChangedListener
 
 class NickNameViewModel: ViewModel() {

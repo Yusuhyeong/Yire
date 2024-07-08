@@ -6,7 +6,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="mainViewModel"
+            name="main_view_model"
             type="com.suhyeong.yire.activity.viewmodel.MainViewModel" />
     </data>
 
@@ -36,7 +36,7 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:background="@color/dark_grey"
-                android:onClick="@{view->mainViewModel.bottomClick(view)}"
+                android:onClick="@{view->main_view_model.bottomClick(view)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/cl_playlist"
@@ -58,7 +58,7 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:background="@color/dark_grey"
-                android:onClick="@{view->mainViewModel.bottomClick(view)}"
+                android:onClick="@{view->main_view_model.bottomClick(view)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/cl_search"
                 app:layout_constraintRight_toLeftOf="@+id/cl_home"
@@ -80,7 +80,7 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:background="@color/dark_grey"
-                android:onClick="@{view->mainViewModel.bottomClick(view)}"
+                android:onClick="@{view->main_view_model.bottomClick(view)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/cl_playlist"
                 app:layout_constraintRight_toLeftOf="@+id/cl_matching"
@@ -102,7 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:background="@color/dark_grey"
-                android:onClick="@{view->mainViewModel.bottomClick(view)}"
+                android:onClick="@{view->main_view_model.bottomClick(view)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/cl_home"
                 app:layout_constraintRight_toLeftOf="@+id/cl_chatting"
@@ -124,7 +124,7 @@
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:background="@color/dark_grey"
-                android:onClick="@{view->mainViewModel.bottomClick(view)}"
+                android:onClick="@{view->main_view_model.bottomClick(view)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@+id/cl_matching"
                 app:layout_constraintRight_toRightOf="parent"
@@ -148,7 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#59000000"
-            android:visibility="@{mainViewModel.try_search_music ? View.VISIBLE : View.GONE}"
+            android:visibility="@{main_view_model.try_search_music ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

@@ -7,7 +7,7 @@
         <import type="android.view.View" />
 
         <variable
-            name="view"
+            name="login_view_model"
             type="com.suhyeong.yire.activity.viewmodel.LoginViewModel" />
     </data>
 
@@ -58,7 +58,7 @@
                 android:layout_width="200dp"
                 android:layout_height="50dp"
                 android:src="@mipmap/img_kakao_login"
-                android:onClick="@{v->view.loginKakao()}"
+                android:onClick="@{v->login_view_model.loginKakao()}"
                 android:layout_marginTop="110dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -94,7 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#59000000"
-            android:visibility="@{view.try_kakao_login ? View.VISIBLE : View.GONE}"
+            android:visibility="@{login_view_model.try_kakao_login ? View.VISIBLE : View.GONE}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"

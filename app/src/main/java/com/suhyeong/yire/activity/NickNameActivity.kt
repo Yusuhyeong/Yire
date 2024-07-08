@@ -23,14 +23,14 @@ class NickNameActivity : AppCompatActivity() {
 
         uid = intent.getStringExtra("uid").toString()
 
-        val viewModel = ViewModelProvider(this)[NickNameViewModel::class.java]
-        viewModel.setActivity(uid)
-        binding.view = viewModel
+        val nickNameViewModel = ViewModelProvider(this)[NickNameViewModel::class.java]
+        nickNameViewModel.setActivity(uid)
+        binding.nickViewModel = nickNameViewModel
         binding.lifecycleOwner = this
 
-        viewModel.show_popup_event.observe(this) { msg ->
-            if (!viewModel.nickName.value.isNullOrEmpty()) {
-                showCommonDialog("닉네임 확인", msg, viewModel.nickName.value.toString(), true)
+        nickNameViewModel.show_popup_event.observe(this) { msg ->
+            if (!nickNameViewModel.nickName.value.isNullOrEmpty()) {
+                showCommonDialog("닉네임 확인", msg, nickNameViewModel.nickName.value.toString(), true)
             } else {
                 showCommonDialog("닉네임 확인", msg, "", false)
             }
@@ -43,7 +43,7 @@ class NickNameActivity : AppCompatActivity() {
         dialog.setPopUpListener(object : PopUpClickListener {
             override fun onConfirm() {
                 // 확인 버튼 클릭 처리
-                Log.d("CommonDialog", "확인 버튼 클릭 ${nickName}")
+                Log.d("YLOG", "확인 버튼 클릭 ${nickName}")
                 if (!nickName.isNullOrEmpty()) {
                     val intent = Intent(this@NickNameActivity, MainActivity::class.java)
                     intent.putExtra("uid", uid)
@@ -60,7 +60,7 @@ class NickNameActivity : AppCompatActivity() {
 
             override fun onCancel() {
                 // 취소 버튼 클릭 처리
-                Log.d("CommonDialog", "취소 버튼 클릭")
+                Log.d("YLOG", "취소 버튼 클릭")
             }
         })
 

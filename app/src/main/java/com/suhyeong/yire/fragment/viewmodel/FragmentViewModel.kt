@@ -25,13 +25,13 @@ class FragmentViewModel: ViewModel() {
     fun apiSearch(query: String) {
         ItsApiClient.instance.searchMusic(query) { result, error ->
             result?.let {
-                Log.d("결과", result.toString())
-                Log.d("결과", "result size : ${result.size}")
+                Log.d("YLOG", result.toString())
+                Log.d("YLOG", "result size : ${result.size}")
 
                 _result.value = result
             }
             error?.let {
-                Log.d("결과에러", error.toString())
+                Log.d("YLOG", error.toString())
             }
         }
     }
